@@ -1,24 +1,22 @@
 stages:
   - build
-  - push
+  - deploy
 
 variables:
-  DOCKER_IMAGE: "registry.gitlab.com/sitisalwa/api-gateway-self-nextjs-project"
+  IMAGE_NAME: registry.gitlab.com/sitisalwa/api-gateway-self-nextjs-project
 
-before_script:
-  # Authenticate with GitLab Container Registry
-  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
-
-build-job:
+build-api-gateway:
   stage: build
   script:
-    - echo "Building Docker image..."
-    - docker build -t $DOCKER_IMAGE:$CI_COMMIT_SHA .
-    - docker tag $DOCKER_IMAGE:$CI_COMMIT_SHA $DOCKER_IMAGE:latest
+    - docker build -t $IMAGE_NAME:$CI_COMMIT_SHORT_SHA .
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
+    - docker push $IMAGE_NAME:$CI_COMMIT_SHORT_SHA
+  only:
+    - main
 
-push-job:
-  stage: push
+deploy-api-gateway:
+  stage: deploy
   script:
-    - echo "Pushing Docker image to GitLab Container Registry..."
-    - docker push $DOCKER_IMAGE:$CI_COMMIT_SHA
-    - docker push $DOCKER_IMAGE:latest
+    - echo "Deploying api-gateway service..."
+  only:
+    - main
