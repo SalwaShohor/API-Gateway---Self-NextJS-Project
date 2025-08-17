@@ -1,0 +1,18 @@
+### Test add new target
+POST http://localhost:5001/api/target/new-target
+Content-Type: application/json
+
+{
+  "icNumber": "1234567890",
+  "fullName": "John Doe",
+  "age": 30,
+  "birthDate": "1995-05-15",
+  "currentAddress": "123 Street"
+}
+
+### Get All Target
+GET http://localhost:5001/api/target/all-target
+
+### Delete Target
+DELETE http://localhost:5001/api/target/delete-by-ic/1234567890
+
