@@ -1,13 +1,74 @@
 ### Test add new target
-POST http://localhost:5001/api/target/new-target
+# POST http://localhost:5001/api/target/new-target
+# Content-Type: application/json
+
+# {
+#   "icNumber": "1234567890",
+#   "fullName": "John Doe",
+#   "age": 30,
+#   "birthDate": "1995-05-15",
+#   "currentAddress": "123 Street"
+# }
+
+#Register User
+POST http://localhost:5001/api/auth/register-options
 Content-Type: application/json
 
 {
-  "icNumber": "1234567890",
-  "fullName": "John Doe",
-  "age": 30,
-  "birthDate": "1995-05-15",
-  "currentAddress": "123 Street"
+  "full_name": "Hiccup Deblois",
+  "email": "hiccupdeblois@example.com",
+  "password": "secret123",
+  "role": "user"
+}
+
+
+#Login User
+GET http://localhost:5001/api/auth/login-options?email=aliafwa@example.com
+Content-Type: application/json
+
+
+#Register User
+POST http://localhost:5001/api/auth/register-options
+Content-Type: application/json
+
+{
+  "full_name": "Hiccup Deblois",
+  "email": "hiccupdeblois@example.com",
+  "password": "secret123",
+  "role": "user"
+}
+
+
+#Login User
+GET http://localhost:5001/api/auth/login-options?email=aliafwa@example.com
+Content-Type: application/json
+
+#Register User
+POST "http://localhost:5001/api/auth/register-options"
+Content-Type: application/json
+
+{
+  "full_name": "Hiccup Deblois",
+  "email": "hiccupdeblois@example.com",
+  "password": "secret123",
+  "role": "user"
+}
+
+
+#Login User
+GET "http://localhost:5001/api/auth/login-options?email=aliafwa@example.com"
+Content-Type: application/json
+
+
+#Register User
+POST http://localhost:5001/api/auth/register-options
+Content-Type: application/json
+
+{
+  "full_name": "Hiccup Dean",
+  "email": "hiccupdean@example.com",
+  "password": "secret123",
+  "role": "user"
 }
 
 ### Get All Target
@@ -16,3 +77,16 @@ GET http://localhost:5001/api/target/all-target
 ### Delete Target
 DELETE http://localhost:5001/api/target/delete-by-ic/1234567890
 
+### Get All User
+GET http://localhost:5001/api/auth/all-users
+
+#Register User
+POST http://localhost:5001/api/auth/register-options
+Content-Type: application/json
+
+{
+  "full_name": "John Dane",
+  "email": "dane@gmail.com",
+  "password": "secret123",
+  "role": "user"
+}

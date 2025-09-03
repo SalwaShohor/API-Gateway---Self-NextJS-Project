@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import targetRoutes from "./routes/targetRoutes.js";
+import authRoutes from "./routes/auth/authRoutes.js";
 import morgan from "morgan";
 
 dotenv.config();
@@ -20,6 +21,17 @@ app.get("/health", (req, res) => {
 
 // Routes
 app.use("/api/target", targetRoutes);
+// app.use("/api", targetRoutes);
+app.use("/api", authRoutes);
+app.use("/api/auth", authRoutes);
+
+// app.use("/api/auth", authRoutes);
+
+// Error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Internal Gateway Error" });
+});
 
 // Start server — bind to 0.0.0.0 so Docker can expose it
 const PORT = process.env.PORT || 5001;
