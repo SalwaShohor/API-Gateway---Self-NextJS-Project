@@ -1,3 +1,15 @@
+#Register User
+POST https://api-gateway-self-nextjs-project-production.up.railway.app/api/auth/register-options
+Content-Type: application/json
+
+{
+  "full_name": "Hiccup Deblois",
+  "email": "hiccupdeblois@example.com",
+  "password": "secret123",
+  "role": "user"
+}
+
+
 ### Test add new target
 # POST http://localhost:5001/api/target/new-target
 # Content-Type: application/json
