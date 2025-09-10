@@ -34,7 +34,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start server — bind to 0.0.0.0 so Docker can expose it
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`API Gateway running on port ${PORT}`);
 });
