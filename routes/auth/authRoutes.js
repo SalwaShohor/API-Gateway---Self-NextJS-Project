@@ -43,6 +43,21 @@ router.post("/register-verify", async (req, res) => {
   }
 });
 
+// 🔹 Forward: POST /api/auth/prelogin
+router.post("/prelogin", async (req, res) => {
+  try {
+    const response = await axios.post(
+      `${USER_SERVICE_URL}/api/auth/prelogin`,
+      req.body
+    );
+    res.json(response.data);
+  } catch (err) {
+    res.status(err.response?.status || 500).json({
+      error: err.response?.data?.error || "User service error (prelogin)",
+    });
+  }
+});
+
 // ✅ Forward: Login Options
 // routes/authRoutes.js (API Gateway)
 router.get("/login-options", async (req, res) => {
