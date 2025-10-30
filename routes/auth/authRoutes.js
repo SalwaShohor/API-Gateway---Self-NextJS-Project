@@ -47,7 +47,7 @@ router.post("/register-verify", async (req, res) => {
 router.post("/prelogin", async (req, res) => {
   try {
     const response = await axios.post(
-      `${USER_SERVICE_URL}/api/auth/prelogin`,
+      `${USER_SERVICE_URL}/auth/prelogin`,
       req.body
     );
     res.json(response.data);
