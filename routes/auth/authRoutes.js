@@ -98,6 +98,23 @@ router.post("/login-verify", async (req, res) => {
   }
 });
 
+router.post("/logout", async (req, res) => {
+  try {
+    const response = await axios.post(
+      `${USER_SERVICE_URL}/auth/logout`,
+      {},
+      {
+        headers: { Authorization: req.headers.authorization },
+      }
+    );
+    res.json(response.data);
+  } catch (err) {
+    res.status(err.response?.status || 500).json({
+      error: err.response?.data?.error || "User service error (logout)",
+    });
+  }
+});
+
 // ✅ Forward: Get All Users
 router.get("/all-users", async (req, res) => {
   try {
